@@ -1,6 +1,17 @@
+import React from 'react';
+import logo from './logo.png';
+
+import SearchPanel from '../searchPanel/searchPanel';
+
+import './characterList.css';
+
+
 const CharacterList = () => {
     return (
-        <h1>Test things</h1>
+        <div>
+            <img className='logo' src={logo} alt="" />
+            <SearchPanel/>
+        </div>
     )
 }
 

@@ -1,3 +1,5 @@
+
+
 import CharacterList from './components/characterList/characterList';
 
 import './App.css';

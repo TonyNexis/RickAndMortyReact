@@ -23,7 +23,7 @@ const CharacterList = () => {
             <SearchPanel/>
             <div className='container'>
             {characters.map((character) => (
-                <Character key={character.id} id={character.id} name={character.name} race={character.species} avatar={character.image} />
+                <Character key={character.id} id={character.id} name={character.name} race={character.species} avatar={character.image} status={character.status} />
             ))}
             </div>
         </div>

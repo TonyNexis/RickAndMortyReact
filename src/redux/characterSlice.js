@@ -22,29 +22,36 @@ export const fetchCharacters = createAsyncThunk('comments/fetchCharacters', asyn
     }
   });
 
-  export const CharactersSlice = createSlice({
+export const CharactersSlice = createSlice({
     name: 'characters',
-    initialState: [],
+    initialState: {
+        data: [],
+        originalData: [], // Добавляем свойство для сохранения оригинальных данных
+    },
     reducers: {
-      commentDelete: {
-        reducer: (state, action) => {
-          return state.filter(comment => comment.id !== action.payload);
-        }
-      },
+        characterFilter: (state, action) => {
+            const filterText = action.payload.toLowerCase();
+            state.data = state.originalData.filter(character => {
+              return character.name.toLowerCase().includes(filterText);
+            });
+        },
     },
     extraReducers: (builder) => {
-      builder
-        .addCase(fetchCharacters.fulfilled, (state, action) => {
-          state.push(...action.payload.results);
-          console.log('fulfilled status');
-        })
-        .addCase(fetchCharacters.pending, (state, action) => {
-          console.log('pending status');
-        })
-        .addCase(fetchCharacters.rejected, (state, action) => {
-          console.log('rejected status');
-        });
+        builder
+            .addCase(fetchCharacters.fulfilled, (state, action) => {
+                state.data = action.payload.results; // Используем свойство data для хранения данных
+                state.originalData = action.payload.results; // Сохраняем оригинальные данные
+                console.log('fulfilled status');
+            })
+            .addCase(fetchCharacters.pending, (state, action) => {
+                console.log('pending status');
+            })
+            .addCase(fetchCharacters.rejected, (state, action) => {
+                console.log('rejected status');
+            });
     },
-  });
+});
+
+  export const { characterFilter } = CharactersSlice.actions;
 
   export default CharactersSlice.reducer

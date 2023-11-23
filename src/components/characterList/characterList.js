@@ -15,7 +15,7 @@ const CharacterList = () => {
         dispatch(fetchCharacters());
     }, [dispatch])
 
-    const characters = useSelector(state => state.characters)
+    const characters = useSelector(state => state.characters.data)
     console.log('=>>>>', characters)
     return (
         <div className='body'>

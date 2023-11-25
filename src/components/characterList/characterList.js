@@ -5,7 +5,7 @@ import { fetchCharacters } from "../../redux/characterSlice";
 import SearchPanel from '../searchPanel/searchPanel';
 import Character from '../character/character';
 
-import './characterList.css';
+import style from './characterList.module.css';
 import logo from './logo.png';
 
 const CharacterList = () => {
@@ -18,10 +18,10 @@ const CharacterList = () => {
     const characters = useSelector(state => state.characters.data)
     console.log('=>>>>', characters)
     return (
-        <div className='body'>
-            <img className='logo' src={logo} alt="" />
+        <div className={style.body}>
+            <img className={style.logo_img} src={logo} alt="" />
             <SearchPanel/>
-            <div className='container'>
+            <div className={style.container}>
             {characters.map((character) => (
                 <Character key={character.id} id={character.id} name={character.name} race={character.species} avatar={character.image} status={character.status} />
             ))}

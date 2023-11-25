@@ -1,11 +1,11 @@
-.container-panel {
+.container_panel {
     display: flex;
     justify-content: center;
     align-items: center;
 
   }
 
-.search-panel {
+.search_panel {
     display: flex;
     width: 988px;
     padding: 16px;
@@ -18,7 +18,7 @@
     margin-bottom: 61px;
 } 
 
-.filter-input {
+.filter_input {
     flex: 1 0 0;
     color: var(--grey, rgba(0, 0, 0, 0.50));
     font-size: 16px;

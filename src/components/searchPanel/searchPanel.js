@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { characterFilter } from '../../redux/characterSlice'
 
-import './searchPanel.css'
+import style from './searchPanel.module.css'
 
 const SearchPanel = () => {
     const dispatch = useDispatch();
@@ -17,11 +17,11 @@ const SearchPanel = () => {
     };
 
     return (
-        <div className='container-panel'>
-            <div className="search-panel">
+        <div className={style.container_panel}>
+            <div className={style.search_panel}>
                 {searchImg}
                 <input 
-                className='filter-input' 
+                className={style.filter_input} 
                 type="text" 
                 placeholder='Filter by name...'
                 onChange={handleInputChange}

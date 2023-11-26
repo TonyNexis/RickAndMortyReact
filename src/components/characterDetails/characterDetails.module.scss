@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+.btn_container {
+    width: 114px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    margin: 21px 0 0 50px;
+    padding: 3px;
+    border-radius: 15px;
+    transition: transform 0.1s;
+
+    .arrow_btn {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        fill: #000;
+        margin: 0 8px 0 0;
+        transition: fill 0.3s;
+    }
+
+    p {
+        margin: 0;
+        color: #000;
+        font-family: 'Karla', sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+        transition: color 0.3s;
+    }
+
+    &:hover {
+        .arrow_btn, p, svg {
+            color: rgb(255, 0, 0);
+            fill: red;
+        }
+    }
+
+    &:active {
+        transform: translateX(-7px);
+    }
+} 
+

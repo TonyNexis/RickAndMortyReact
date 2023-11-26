@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { characterFilter } from '../../redux/characterSlice'
+import { characterFilter } from '../../redux/charactersSlice'
 
 import style from './searchPanel.module.css'
 

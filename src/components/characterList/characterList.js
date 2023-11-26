@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCharacters } from "../../redux/characterSlice";
+import { fetchCharacters } from "../../redux/charactersSlice";
 
 import SearchPanel from '../searchPanel/searchPanel';
 import Character from '../character/character';

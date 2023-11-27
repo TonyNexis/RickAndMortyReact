@@ -1,5 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import React, { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCharacterDetails } from '../../redux/characterDetailsSlice';
 
 
 import styles from './characterDetails.module.scss'
@@ -7,7 +9,16 @@ import styles from './characterDetails.module.scss'
 const CharacterDetails = () => {
     const navigate = useNavigate();
     const characterDetails = useSelector(state => state.characterDetails.characterData);
+    const dispatch = useDispatch();
+    const { id } = useParams();
+
     const {name, image, status, gender, species, type, origin } = characterDetails;
+
+    useEffect (() => {
+        if (id) {
+            dispatch(fetchCharacterDetails(id));
+        }
+    }, [dispatch, id]);
 
     const clickBack = () => {
         navigate('/characters');

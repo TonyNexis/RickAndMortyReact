@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { spinnerDisplayOn, spinnerDisplayOff } from "./spinnerSlice";
+
 
 const apiUrl = 'https://rickandmortyapi.com/api/character';
 
-export const fetchCharacterDetails = createAsyncThunk('comments/fetchCharacterDetails', async (id) => {
+export const fetchCharacterDetails = createAsyncThunk('comments/fetchCharacterDetails', async (id, { dispatch }) => {
     try {
+      dispatch(spinnerDisplayOn());
       const response = await fetch(`${apiUrl}/${id}`);
 
       if (!response.ok) {
@@ -12,6 +15,7 @@ export const fetchCharacterDetails = createAsyncThunk('comments/fetchCharacterDe
 
       const jsonData = await response.json();
       console.log(jsonData)
+      dispatch(spinnerDisplayOff());
       return jsonData;
     } catch (error) {
       console.log(error);

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import charactersSlice from "./charactersSlice";
+import CharactersSlice from "./charactersSlice";
 import CharacterDetailsSlice from "./characterDetailsSlice";
+import SpinnerSlice from "./spinnerSlice";
 
 const store = configureStore({
     reducer: {
-        characters: charactersSlice,
+        characters: CharactersSlice,
         characterDetails: CharacterDetailsSlice,
+        spinner: SpinnerSlice,
     }
 })
 

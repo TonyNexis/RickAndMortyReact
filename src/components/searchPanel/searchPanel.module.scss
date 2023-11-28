@@ -1,0 +1,32 @@
+.container_panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .search_panel {
+        display: flex;
+        width: 988px;
+        padding: 16px;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-radius: 8px;
+        border: 1px solid var(--grey, rgba(0, 0, 0, 0.50));
+        margin-bottom: 61px;
+
+        .filter_input {
+            flex: 1 0 0;
+            color: var(--grey, rgba(0, 0, 0, 0.50));
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 150%; /* 24px */
+            border: none;
+            
+            &:focus {
+                outline: none;
+            }
+        }
+    } 
+  }

@@ -1,0 +1,119 @@
+.navigation_panel {
+    display: flex;
+    position: fixed;
+    right: 0;
+    top: 0;
+    align-items: center;
+    margin: 15px 15px 0 0;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: center;
+    justify-content: center;
+    // transform: translateX(0);
+    animation: fade_in 0.8s ease-in-out;
+
+    p {
+        border: none;
+        outline: initial;
+        cursor: initial;
+        font-weight: 600;
+        justify-content: center;
+        padding: 2px 10px 6px 15px;
+        margin: 0;
+        transition: color 0.5s;
+        &:hover {
+            color: rgb(0, 187, 255);
+        }
+    }
+
+    button,
+    button:active,
+    button:focus,
+    button:hover,
+    button:visited {
+        background-color: initial;
+        color: initial;
+        border: initial;
+        outline: initial;
+        cursor: initial;
+    }
+
+    .vertical_line {
+        width: 1px;
+        height: 27px;
+        background-color: black;
+    }
+
+    .sign_up_btn {
+        font-weight: 700;
+        padding: 6px 10px 6px 10px;
+        border-radius:0 15px 15px 0;
+        justify-content: center;
+        background-color: rgb(122, 226, 226);
+        transition: background-color 0.5s;
+        &:hover {
+            background-color: rgb(0, 187, 255);
+            border-radius:0 15px 15px 0;
+        }
+
+    }
+
+    .log_in_btn {
+        font-weight: 700;
+        padding: 6px 10px 6px 10px;
+        justify-content: center;
+        transition: background-color 0.5s;
+        &:hover {
+            background-color: rgb(0, 187, 255);
+        }
+    }
+}
+
+.hidden {
+    transform: translateX(110%);
+    animation: fade_out 0.8s ease-in-out;
+}
+
+.menu_btn {
+    border: none;
+    background-color: initial;
+    display: flex;
+    position: fixed;
+    right: 0;
+    top: 0;
+    align-items: center;
+    margin: 15px 15px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 50%;
+    display: flex;
+    width: 30px; 
+    height: 30px;
+    justify-content: center;
+    transition: all 0.8s ease-in-out;
+    transform: translateX(170%);
+
+    animation: fade_out 0.8s ease-in-out;
+}
+
+.menu_btn_show {
+    transform: translateX(0%);
+    animation: fade_in 0.8s ease-in-out;
+}
+
+@keyframes fade_in {
+    from {
+        transform: translateX(170%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+  }
+  
+  @keyframes fade_out {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(170%);
+    }
+  }

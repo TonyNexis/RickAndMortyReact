@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCharacterDetails } from '../../redux/characterDetailsSlice';
 import Spinner from '../spinner/spinner'
 import { spinnerDisplay } from '../../redux/spinnerSlice';
+import MenuPanel from "../navPanel/menuPanel";
 
 import styles from './characterDetails.module.scss'
 
@@ -38,6 +39,7 @@ const CharacterDetails = () => {
 
     return (
         <div className="body">
+            <MenuPanel/>
             <button className={styles.btn_container} onClick={clickBack}>
                 <svg className={styles.arrow_btn} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"/>

@@ -5,6 +5,7 @@ import { fetchCharacters } from "../../redux/charactersSlice";
 import SearchPanel from '../searchPanel/searchPanel';
 import Character from '../character/character';
 import Spinner from "../spinner/spinner";
+import MenuPanel from "../navPanel/menuPanel";
 import { spinnerDisplay } from "../../redux/spinnerSlice";
 
 import style from './characterList.module.scss';
@@ -22,6 +23,7 @@ const CharacterList = () => {
 
     return (
         <div className={style.body}>
+            <MenuPanel/>
             <img className={style.logo_img} src={logo} alt="" />
             <SearchPanel/>
             {display ? <Spinner/> : null}

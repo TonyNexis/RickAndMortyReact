@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCharacterDetails } from '../../redux/characterDetailsSlice';
 import Spinner from '../spinner/spinner'
 import { spinnerDisplay } from '../../redux/spinnerSlice';
-import MenuPanel from "../navPanel/menuPanel";
+import MenuPanel from "../menuPanel/menuPanel";
 
 import styles from './characterDetails.module.scss'
 

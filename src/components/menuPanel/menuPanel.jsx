@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { modalDisplayOn } from '../../redux/modalSlice';
 
 import styles from './menuPanel.module.scss'
+import { useDispatch } from 'react-redux';
 
 const MenuPanel = () => {
     const [hide, setHide] = useState(false);
+    const dispatch = useDispatch();
+
+    const showModalReg = () => {
+        dispatch(modalDisplayOn());
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,7 +38,7 @@ const MenuPanel = () => {
                 <div className={styles.vertical_line}></div>
                 <button className={styles.log_in_btn}>Log in</button>
                 <div className={styles.vertical_line}></div>
-                <button className={styles.sign_up_btn}>Sign up</button>
+                <button onClick={showModalReg} className={styles.sign_up_btn}>Sign up</button>
             </div>
             <button className={`${styles.menu_btn} ${hide ? `${styles.menu_btn_show}` : ''}`} onClick={showMenu}>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">

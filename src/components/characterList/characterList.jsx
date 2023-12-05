@@ -23,8 +23,10 @@ const CharacterList = () => {
     const characters = useSelector(state => state.characters.data)
 
     return (
+        <>
+                <RegForm/>
         <div className={style.body}>
-            <RegForm/>
+            
             <MenuPanel/>
             <img className={style.logo_img} src={logo} alt="" />
             <SearchPanel/>
@@ -35,6 +37,7 @@ const CharacterList = () => {
             ))}
             </div>
         </div>
+        </>
     )
 }
 

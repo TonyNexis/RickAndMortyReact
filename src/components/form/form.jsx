@@ -42,7 +42,7 @@ const RegForm = () => {
         return () => {
             document.removeEventListener('keydown', closeEscape);
         }
-    }, [])
+    }, [dispatch])
 
     const display = useSelector(modalDisplay);
 
@@ -60,9 +60,14 @@ const RegForm = () => {
 
     useEffect(() => {
         if (display) {
-          document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = '15px';
+        //   document.querySelector('.reg_form').style.position = 'fixed';
+        //   document.querySelector('.navigation_panel').style.width = '1930px';
         } else {
           document.body.style.overflow = 'auto';
+          document.body.style.paddingRight = '';
+        //   document.body.style.width = '1903px';
         }
       }, [display]);
 

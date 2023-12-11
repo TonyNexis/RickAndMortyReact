@@ -24,9 +24,8 @@ const CharacterList = () => {
 
     return (
         <>
-                <RegForm/>
+        <RegForm/>
         <div className={style.body}>
-            
             <MenuPanel/>
             <img className={style.logo_img} src={logo} alt="" />
             <SearchPanel/>

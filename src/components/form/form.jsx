@@ -60,14 +60,20 @@ const RegForm = () => {
 
     useEffect(() => {
         if (display) {
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
             document.body.style.overflow = 'hidden';
-            document.body.style.paddingRight = '15px';
-        //   document.querySelector('.reg_form').style.position = 'fixed';
-        //   document.querySelector('.navigation_panel').style.width = '1930px';
+            // document.body.style.overflowY = 'scroll';
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+            // document.body.style.paddingRight = '17px';
+            document.querySelector('.menuPanel_navigation_panel__9TC-N ').style.marginRight = `${scrollbarWidth+ 15}px`;
+            // const regFormElement = document.querySelector('.menuPanel_navigation_panel__9TC-N ');
+            // if (regFormElement) {
+            //     regFormElement.style.marginRight = '32px';
+            // }
         } else {
           document.body.style.overflow = 'auto';
           document.body.style.paddingRight = '';
-        //   document.body.style.width = '1903px';
+          document.querySelector('.menuPanel_navigation_panel__9TC-N ').style.marginRight = '15px';
         }
       }, [display]);
 

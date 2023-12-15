@@ -1,6 +1,7 @@
 .reg_form {
     display: flex;
     flex-direction: column;
+    position: relative;
     width: 400px;
     height: 400px;
     border-radius: 8px;
@@ -19,6 +20,34 @@
     
     .reg_btn {
         margin: 40px;
+    }
+
+    .close_btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 10px 10px 0 0;
+        border: none;
+        padding: 3px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+
+        transition: fill 1.3s ease, transform 0.3s ease;
+
+        :hover {
+            fill: red;
+            transform: rotate(90deg);
+        }
+
+        svg {
+            width: 15px;
+            height: 15px;
+            padding: 0;
+            margin: 0;
+            fill: black;
+        }
+        
     }
 }
 

@@ -16,6 +16,12 @@
     
     .input_field{
         margin: 10px;
+        width: 223px;
+    }
+
+    .toggle_btn{
+        width: 115px;
+        height: 115px;
     }
     
     .reg_btn {
@@ -32,22 +38,29 @@
         text-align: center;
         display: flex;
         justify-content: center;
-
-        transition: fill 1.3s ease, transform 0.3s ease;
-
-        :hover {
-            fill: red;
-            transform: rotate(90deg);
-        }
+        transition: transform 0.4s ease;
 
         svg {
             width: 15px;
             height: 15px;
             padding: 0;
             margin: 0;
-            fill: black;
+            fill: rgb(38, 88, 203);
+            transition: fill 0.4s ease;
         }
-        
+
+        &:hover {
+            transform: rotate(180deg);
+
+            svg {
+                fill: red;
+            } 
+        }
+    }
+
+    .toggle_password {
+        border: 1px solid black;
+        width: 3px;
     }
 }
 

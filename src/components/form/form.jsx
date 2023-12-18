@@ -8,6 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+import sendDataToServer from '../../services/dataService';
+
 import styles from './form.module.scss';
 
 
@@ -79,7 +81,8 @@ const RegForm = () => {
     }
 
     const onSubmit = (data) => {
-        alert(JSON.stringify(data));
+        sendDataToServer(data);
+        // alert(JSON.stringify(data));
     }
 
     useEffect(() => {

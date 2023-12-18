@@ -7,6 +7,7 @@ import { Button, TextField, Backdrop, InputAdornment, FormControl, InputLabel, O
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { v4 as uuidv4 } from 'uuid';
 
 import sendDataToServer from '../../services/dataService';
 
@@ -26,21 +27,11 @@ const RegForm = () => {
     const dispatch = useDispatch();
     const [showPassword, setShowPassword] = React.useState(false);
 
-    const [formValues, setFormValues] = useState({
-        nickname: '',
-        login: '',
-        password: '',
-    })
 
     const closeModalReg = (e) => {
         e.preventDefault();
 
         dispatch(modalDisplayOff())
-        setFormValues({
-            nickname: '',
-            login: '',
-            password: '',
-        })
         setShowPassword(false);
         reset();
     }
@@ -51,11 +42,6 @@ const RegForm = () => {
         const closeEscape = e => {
             if (e.key === 'Escape') {
                 dispatch(modalDisplayOff())
-                setFormValues({
-                    nickname: '',
-                    login: '',
-                    password: '',
-                });
                 reset();
             }
         }
@@ -72,17 +58,9 @@ const RegForm = () => {
         e.stopPropagation();
       };
 
-    const handleInputChange = (e) => {
-        const { id, value } = e.target;
-        setFormValues(prevState => ({
-            ...prevState,
-            [id]: value,
-        }))
-    }
-
     const onSubmit = (data) => {
-        sendDataToServer(data);
-        // alert(JSON.stringify(data));
+        const userData = {...data, id: uuidv4(),}
+        sendDataToServer(userData);
     }
 
     useEffect(() => {
@@ -120,13 +98,11 @@ const RegForm = () => {
                 label="Nickname"
                 type="text"
                 autoComplete="current-password"
-                // value={formValues.nickname}
-                // onChange={handleInputChange}
                 {...register('nickname', {
                     required: 'All fields are required.',
                     minLength: {
-                        value: 6,
-                        message: 'Minimum Nickname length is 6 characters.'
+                        value: 3,
+                        message: 'Minimum Nickname length is 3 characters.'
                     },
                     maxLength: {
                         value: 14,
@@ -141,13 +117,11 @@ const RegForm = () => {
                 label="Login"
                 type="text"
                 autoComplete="current-password"
-                // value={formValues.login}
-                // onChange={handleInputChange}
                 {...register('login', {
                     required: 'All fields are required.',
                         minLength: {
-                        value: 6,
-                        message: 'Minimum Login length is 6 characters.'
+                        value: 3,
+                        message: 'Minimum Login length is 3 characters.'
                     },
                     maxLength: {
                         value: 14,
@@ -155,17 +129,6 @@ const RegForm = () => {
                     },
                 })}
             />
-            {/* <TextField
-                className={styles.input_field}
-                size="small"
-                id="password"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                value={formValues.password}
-                onChange={handleInputChange}
-            /> */}
-
             <FormControl size="small" className={styles.input_field} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                 <OutlinedInput
@@ -183,8 +146,6 @@ const RegForm = () => {
                     </InputAdornment>
                     }
                     label="Password"
-                    // value={formValues.password}
-                    // onChange={handleInputChange}
                     {...register('password', {
                         required: 'All fields are required.',
                         minLength: {
@@ -192,8 +153,8 @@ const RegForm = () => {
                             message: 'Minimum Password length is 6 characters.'
                         },
                         maxLength: {
-                            value: 14,
-                            message: 'Maximum Password length is 14 characters.'
+                            value: 24,
+                            message: 'Maximum Password length is 24 characters.'
                         },
                     })}
                 />

@@ -6,6 +6,7 @@ import CharacterDetails from './components/characterDetails/characterDetails';
 import './App.css';
 
 
+
 function App() {
   return (
     <BrowserRouter>

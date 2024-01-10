@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from 'react-helmet';
 import { fetchCharacters } from "../../redux/charactersSlice";
 
 import SearchPanel from '../searchPanel/searchPanel';
@@ -24,6 +25,7 @@ const CharacterList = () => {
 
     return (
         <>
+        <Helmet><title>Rick and Morty</title></Helmet>
         <RegForm/>
         <div className={style.body}>
             <MenuPanel/>

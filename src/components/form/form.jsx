@@ -15,6 +15,8 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 import { modalDisplay, modalDisplayOff } from '../../redux/modalSlice'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { auth } from '../../firebase/firebaseConfig'
 
 import sendDataToServer from '../../services/dataService'
 
@@ -93,6 +95,10 @@ const RegForm = () => {
 		}
 	}, [display])
 
+	const handleGoogle = async (e) => {
+		const provider = await new GoogleAuthProvider();
+		return signInWithPopup(auth, provider)
+	}
 
 	return (
 		<Backdrop
@@ -208,6 +214,16 @@ const RegForm = () => {
 					disabled={!isValid}
 				>
 					Register
+				</Button>
+
+				<Button
+					// type='submit'
+					onClick={handleGoogle}
+					className={styles.reg_btn}
+					variant='contained'
+					// disabled={!isValid}
+				>
+					Google
 				</Button>
 			</form>
 		</Backdrop>

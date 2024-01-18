@@ -17,6 +17,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { modalDisplay, modalDisplayOff } from '../../redux/modalSlice'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { auth } from '../../firebase/firebaseConfig'
+import FirebaseUserReg from '../../firebase/firebaseUserReg'
 
 import sendDataToServer from '../../services/dataService'
 
@@ -34,6 +35,7 @@ const RegForm = () => {
 
 	const dispatch = useDispatch()
 	const [showPassword, setShowPassword] = React.useState(false)
+	const [showCopyPassword, setShowCopyPassword] = React.useState(false)
 
 	const closeModalReg = e => {
 		e.preventDefault()
@@ -43,6 +45,8 @@ const RegForm = () => {
 	}
 
 	const handleClickShowPassword = () => setShowPassword(show => !show)
+	const handleClickShowCopyPassword = () => setShowCopyPassword(show => !show)
+
 
 	useEffect(() => {
 		const closeEscape = e => {
@@ -65,8 +69,7 @@ const RegForm = () => {
 	}
 
 	const onSubmit = data => {
-		const userData = { ...data, id: uuidv4() }
-		sendDataToServer(userData)
+		FirebaseUserReg(data);
 	}
 
 	useEffect(() => {
@@ -95,10 +98,14 @@ const RegForm = () => {
 		}
 	}, [display])
 
+
+// AUTH!!!!
 	const handleGoogle = async (e) => {
 		const provider = await new GoogleAuthProvider();
 		return signInWithPopup(auth, provider)
 	}
+
+// =============================================================================
 
 	return (
 		<Backdrop
@@ -147,21 +154,16 @@ const RegForm = () => {
 				<TextField
 					className={styles.input_field}
 					size='small'
-					id='login'
-					label='Login'
-					type='text'
+					id='email'
+					label='Email'
+					type='email'
 					autoComplete='current-password'
-					{...register('login', {
-						required: 'All fields are required.',
-						minLength: {
-							value: 3,
-							message: 'Minimum Login length is 3 characters.',
-						},
-						maxLength: {
-							value: 14,
-							message: 'Maximum Login length is 14 characters.',
-						},
-					})}
+					{...register("email", {
+						pattern: {
+							value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
+							message: "Invalid email address. Please enter a valid email.",
+						  },
+					  })}
 				/>
 				<FormControl
 					size='small'
@@ -183,6 +185,7 @@ const RegForm = () => {
 								>
 									{showPassword ? <VisibilityOff /> : <Visibility />}
 								</IconButton>
+
 							</InputAdornment>
 						}
 						label='Password'
@@ -199,10 +202,48 @@ const RegForm = () => {
 						})}
 					/>
 				</FormControl>
+
+				<FormControl
+					size='small'
+					className={styles.input_field}
+					variant='outlined'
+				>
+					<InputLabel htmlFor='outlined-adornment-password'>
+						Password
+					</InputLabel>
+					<OutlinedInput
+						id='copyPassword'
+						type={showCopyPassword ? 'text' : 'password'}
+						endAdornment={
+							<InputAdornment position='end'>
+								<IconButton
+									aria-label='toggle password visibility'
+									onClick={handleClickShowCopyPassword}
+									edge='end'
+								>
+									{showCopyPassword ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
+
+							</InputAdornment>
+						}
+						label='Password'
+						{...register('copyPassword', {
+							required: 'All fields are required.',
+							minLength: {
+								value: 6,
+								message: 'Minimum Password length is 6 characters.',
+							},
+							maxLength: {
+								value: 24,
+								message: 'Maximum Password length is 24 characters.',
+							},
+						})}
+					/>
+				</FormControl>
 				<div className={styles.error_message}>
-					{(errors?.nickname || errors?.login || errors?.password) && (
+					{(errors?.nickname || errors?.email || errors?.password) && (
 						<p>
-							{(errors?.nickname || errors?.login || errors?.password)
+							{(errors?.nickname || errors?.email || errors?.password)
 								?.message || 'Error!'}
 						</p>
 					)}
@@ -216,7 +257,7 @@ const RegForm = () => {
 					Register
 				</Button>
 
-				<Button
+				{/* <Button
 					// type='submit'
 					onClick={handleGoogle}
 					className={styles.reg_btn}
@@ -224,7 +265,7 @@ const RegForm = () => {
 					// disabled={!isValid}
 				>
 					Google
-				</Button>
+				</Button> */}
 			</form>
 		</Backdrop>
 	)

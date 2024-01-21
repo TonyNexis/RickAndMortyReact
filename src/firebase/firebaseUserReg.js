@@ -7,7 +7,9 @@ const FirebaseUserReg = async (userData) => {
           email = userData.email,
           password = userData.password;
 
-    const userCredential = await createUserWithEmailAndPassword(auth, nickname, email, password);
+          console.log("FirebaseUserReg >>>", nickname, email, password)
+
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 }
 
 export default FirebaseUserReg;

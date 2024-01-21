@@ -13,17 +13,13 @@ import IconButton from '@mui/material/IconButton'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { v4 as uuidv4 } from 'uuid'
-import { modalDisplay, modalDisplayOff } from '../../redux/modalSlice'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { auth } from '../../firebase/firebaseConfig'
+// import { v4 as uuidv4 } from 'uuid'
 import FirebaseUserReg from '../../firebase/firebaseUserReg'
-
-import sendDataToServer from '../../services/dataService'
+import { signUpDisplay, signUpDisplayOff } from '../../redux/SignUpSlice'
 
 import styles from './form.module.scss'
 
-const RegForm = () => {
+const SignUpForm = () => {
 	const {
 		register,
 		formState: { errors, isValid },
@@ -39,7 +35,7 @@ const RegForm = () => {
 
 	const closeModalReg = e => {
 		e.preventDefault()
-		dispatch(modalDisplayOff())
+		dispatch(signUpDisplayOff())
 		setShowPassword(false)
 		reset()
 	}
@@ -47,11 +43,10 @@ const RegForm = () => {
 	const handleClickShowPassword = () => setShowPassword(show => !show)
 	const handleClickShowCopyPassword = () => setShowCopyPassword(show => !show)
 
-
 	useEffect(() => {
 		const closeEscape = e => {
 			if (e.key === 'Escape') {
-				dispatch(modalDisplayOff())
+				dispatch(signUpDisplayOff())
 				reset()
 			}
 		}
@@ -62,14 +57,14 @@ const RegForm = () => {
 		}
 	}, [dispatch])
 
-	const display = useSelector(modalDisplay)
+	const display = useSelector(signUpDisplay)
 
 	const handleFormClick = e => {
 		e.stopPropagation()
 	}
 
 	const onSubmit = data => {
-		FirebaseUserReg(data);
+		FirebaseUserReg(data)
 	}
 
 	useEffect(() => {
@@ -97,15 +92,6 @@ const RegForm = () => {
 			).style.marginRight = `-${scrollbarWidth}px`
 		}
 	}, [display])
-
-
-// AUTH!!!!
-	const handleGoogle = async (e) => {
-		const provider = await new GoogleAuthProvider();
-		return signInWithPopup(auth, provider)
-	}
-
-// =============================================================================
 
 	return (
 		<Backdrop
@@ -158,12 +144,12 @@ const RegForm = () => {
 					label='Email'
 					type='email'
 					autoComplete='current-password'
-					{...register("email", {
+					{...register('email', {
 						pattern: {
 							value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
-							message: "Invalid email address. Please enter a valid email.",
-						  },
-					  })}
+							message: 'Invalid email address. Please enter a valid email.',
+						},
+					})}
 				/>
 				<FormControl
 					size='small'
@@ -185,7 +171,6 @@ const RegForm = () => {
 								>
 									{showPassword ? <VisibilityOff /> : <Visibility />}
 								</IconButton>
-
 							</InputAdornment>
 						}
 						label='Password'
@@ -223,7 +208,6 @@ const RegForm = () => {
 								>
 									{showCopyPassword ? <VisibilityOff /> : <Visibility />}
 								</IconButton>
-
 							</InputAdornment>
 						}
 						label='Password'
@@ -271,4 +255,4 @@ const RegForm = () => {
 	)
 }
 
-export default RegForm
+export default SignUpForm

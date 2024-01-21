@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { modalDisplayOn } from '../../redux/modalSlice';
+import { signUpDisplayOn } from '../../redux/SignUpSlice';
+import { signInDisplayOn } from '../../redux/SignInSlice';
 
 import styles from './menuPanel.module.scss'
 import { useDispatch } from 'react-redux';
@@ -9,7 +10,11 @@ const MenuPanel = () => {
     const dispatch = useDispatch();
 
     const showModalReg = () => {
-        dispatch(modalDisplayOn());
+        dispatch(signUpDisplayOn());
+    }
+
+    const showModalIn = () => {
+        dispatch(signInDisplayOn());
     }
 
     useEffect(() => {
@@ -36,7 +41,7 @@ const MenuPanel = () => {
             <div className={`${styles.navigation_panel} ${hide ? `${styles.hidden}` : ''}`}>
                 <p>Hello, Andrew</p>
                 <div className={styles.vertical_line}></div>
-                <button className={styles.log_in_btn}>Log in</button>
+                <button onClick={showModalIn} className={styles.log_in_btn}>Log in</button>
                 <div className={styles.vertical_line}></div>
                 <button onClick={showModalReg} className={styles.sign_up_btn}>Sign up</button>
             </div>

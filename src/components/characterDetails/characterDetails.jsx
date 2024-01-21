@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchCharacterDetails } from '../../redux/characterDetailsSlice'
 import { spinnerDisplay } from '../../redux/spinnerSlice'
-import RegForm from '../form/form'
+import SignUpForm from '../form/SignUp'
+import SignInForm from '../form/SignIn'
 import MenuPanel from '../menuPanel/menuPanel'
 import Spinner from '../spinner/spinner'
 
@@ -47,7 +48,8 @@ const CharacterDetails = () => {
 			<Helmet>
 				<title>{`Character Details - ${name}`}</title>
 			</Helmet>
-			<RegForm />
+			<SignUpForm />
+			<SignInForm />
 			<div className='body'>
 				<MenuPanel />
 				<button className={styles.btn_container} onClick={clickBack}>

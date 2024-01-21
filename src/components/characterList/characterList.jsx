@@ -7,7 +7,8 @@ import SearchPanel from '../searchPanel/searchPanel';
 import Character from '../character/character';
 import Spinner from "../spinner/spinner";
 import MenuPanel from "../menuPanel/menuPanel";
-import RegForm from "../form/form";
+import SignUpForm from "../form/SignUp";
+import SignInForm from '../form/SignIn';
 import { spinnerDisplay } from "../../redux/spinnerSlice";
 
 import style from './characterList.module.scss';
@@ -26,7 +27,8 @@ const CharacterList = () => {
     return (
         <>
         <Helmet><title>Rick and Morty</title></Helmet>
-        <RegForm/>
+        <SignUpForm/>
+        <SignInForm/>
         <div className={style.body}>
             <MenuPanel/>
             <img className={style.logo_img} src={logo} alt="" />

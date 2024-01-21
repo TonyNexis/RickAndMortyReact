@@ -1,16 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
-import CharactersSlice from "./charactersSlice";
-import CharacterDetailsSlice from "./characterDetailsSlice";
-import SpinnerSlice from "./spinnerSlice";
-import ModalSlice from "./modalSlice";
+import { configureStore } from '@reduxjs/toolkit'
+import SignUpSlice from './SignUpSlice'
+import SignInSlice from './SignInSlice'
+import CharacterDetailsSlice from './characterDetailsSlice'
+import CharactersSlice from './charactersSlice'
+import SpinnerSlice from './spinnerSlice'
 
 const store = configureStore({
-    reducer: {
-        characters: CharactersSlice,
-        characterDetails: CharacterDetailsSlice,
-        spinner: SpinnerSlice,
-        modal: ModalSlice,
-    }
+	reducer: {
+		characters: CharactersSlice,
+		characterDetails: CharacterDetailsSlice,
+		spinner: SpinnerSlice,
+		signUpSlice: SignUpSlice,
+		signInSlice: SignInSlice,
+	},
 })
 
-export default store;
+export default store

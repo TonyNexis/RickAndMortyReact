@@ -33,10 +33,13 @@ const SignUpForm = () => {
 	const [showPassword, setShowPassword] = React.useState(false)
 	const [showCopyPassword, setShowCopyPassword] = React.useState(false)
 
+	const [passwordMatchError, setPasswordMatchError] = React.useState(false)
+
 	const closeModalReg = e => {
 		e.preventDefault()
 		dispatch(signUpDisplayOff())
 		setShowPassword(false)
+		setPasswordMatchError(false)
 		reset()
 	}
 
@@ -64,7 +67,12 @@ const SignUpForm = () => {
 	}
 
 	const onSubmit = data => {
-		FirebaseUserReg(data)
+		if (data.password !== data.copyPassword) {
+			return setPasswordMatchError(true)
+		} else {
+			FirebaseUserReg(data)
+		}
+		
 	}
 
 	useEffect(() => {
@@ -124,7 +132,7 @@ const SignUpForm = () => {
 					id='nickname'
 					label='Nickname'
 					type='text'
-					autoComplete='current-password'
+					autoComplete='nickname'
 					{...register('nickname', {
 						required: 'All fields are required.',
 						minLength: {
@@ -143,7 +151,7 @@ const SignUpForm = () => {
 					id='email'
 					label='Email'
 					type='email'
-					autoComplete='current-password'
+					autoComplete='email'
 					{...register('email', {
 						pattern: {
 							value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
@@ -231,6 +239,8 @@ const SignUpForm = () => {
 								?.message || 'Error!'}
 						</p>
 					)}
+					{passwordMatchError && <p>Password doesn't match</p>}
+
 				</div>
 				<Button
 					type='submit'

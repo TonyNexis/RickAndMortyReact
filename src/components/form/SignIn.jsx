@@ -31,7 +31,6 @@ const SignInForm = () => {
 
 	const dispatch = useDispatch()
 	const [showPassword, setShowPassword] = React.useState(false)
-	const [showCopyPassword, setShowCopyPassword] = React.useState(false)
 
 	const closeModalReg = e => {
 		e.preventDefault()
@@ -41,7 +40,6 @@ const SignInForm = () => {
 	}
 
 	const handleClickShowPassword = () => setShowPassword(show => !show)
-	const handleClickShowCopyPassword = () => setShowCopyPassword(show => !show)
 
 	useEffect(() => {
 		const closeEscape = e => {
@@ -105,7 +103,7 @@ const SignInForm = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				action=''
 			>
-				<h1>Test Window</h1>
+				<h1>Log In please</h1>
 				<button className={styles.close_btn} onClick={closeModalReg}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
@@ -121,29 +119,10 @@ const SignInForm = () => {
 				<TextField
 					className={styles.input_field}
 					size='small'
-					id='nickname'
-					label='Nickname'
-					type='text'
-					autoComplete='current-password'
-					{...register('nickname', {
-						required: 'All fields are required.',
-						minLength: {
-							value: 3,
-							message: 'Minimum Nickname length is 3 characters.',
-						},
-						maxLength: {
-							value: 14,
-							message: 'Maximum Nickname length is 14 characters.',
-						},
-					})}
-				/>
-				<TextField
-					className={styles.input_field}
-					size='small'
 					id='email'
 					label='Email'
 					type='email'
-					autoComplete='current-password'
+					autoComplete='email'
 					{...register('email', {
 						pattern: {
 							value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
@@ -188,42 +167,6 @@ const SignInForm = () => {
 					/>
 				</FormControl>
 
-				<FormControl
-					size='small'
-					className={styles.input_field}
-					variant='outlined'
-				>
-					<InputLabel htmlFor='outlined-adornment-password'>
-						Password
-					</InputLabel>
-					<OutlinedInput
-						id='copyPassword'
-						type={showCopyPassword ? 'text' : 'password'}
-						endAdornment={
-							<InputAdornment position='end'>
-								<IconButton
-									aria-label='toggle password visibility'
-									onClick={handleClickShowCopyPassword}
-									edge='end'
-								>
-									{showCopyPassword ? <VisibilityOff /> : <Visibility />}
-								</IconButton>
-							</InputAdornment>
-						}
-						label='Password'
-						{...register('copyPassword', {
-							required: 'All fields are required.',
-							minLength: {
-								value: 6,
-								message: 'Minimum Password length is 6 characters.',
-							},
-							maxLength: {
-								value: 24,
-								message: 'Maximum Password length is 24 characters.',
-							},
-						})}
-					/>
-				</FormControl>
 				<div className={styles.error_message}>
 					{(errors?.nickname || errors?.email || errors?.password) && (
 						<p>
@@ -238,7 +181,7 @@ const SignInForm = () => {
 					variant='contained'
 					disabled={!isValid}
 				>
-					Register
+					Enter
 				</Button>
 
 				{/* <Button

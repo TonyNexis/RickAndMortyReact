@@ -14,7 +14,7 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 // import { v4 as uuidv4 } from 'uuid'
-import FirebaseUserReg from '../../firebase/firebaseUserReg'
+import firebaseUserSignIn from '../../firebase/FirebaseUserSignIn'
 import { signInDisplay, signInDisplayOff } from '../../redux/SignInSlice'
 
 import styles from './form.module.scss'
@@ -62,7 +62,7 @@ const SignInForm = () => {
 	}
 
 	const onSubmit = data => {
-		FirebaseUserReg(data)
+		firebaseUserSignIn(data)
 	}
 
 	useEffect(() => {
@@ -119,7 +119,7 @@ const SignInForm = () => {
 				<TextField
 					className={styles.input_field}
 					size='small'
-					id='email'
+					id='signInEmail'
 					label='Email'
 					type='email'
 					autoComplete='email'
@@ -139,7 +139,7 @@ const SignInForm = () => {
 						Password
 					</InputLabel>
 					<OutlinedInput
-						id='password'
+						id='signInPassword'
 						type={showPassword ? 'text' : 'password'}
 						endAdornment={
 							<InputAdornment position='end'>

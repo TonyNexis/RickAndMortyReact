@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebaseConfig';
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from './FirebaseConfig'
 
 const FirebaseUserReg = async (userData) => {
     const nickname = userData.nickname,
@@ -9,7 +8,8 @@ const FirebaseUserReg = async (userData) => {
 
           console.log("FirebaseUserReg >>>", nickname, email, password)
 
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+    .catch((error) => console.log(error))
 }
 
 export default FirebaseUserReg;

@@ -14,7 +14,7 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 // import { v4 as uuidv4 } from 'uuid'
-import FirebaseUserReg from '../../firebase/firebaseUserReg'
+import FirebaseUserReg from '../../firebase/FirebaseUserReg'
 import { signUpDisplay, signUpDisplayOff } from '../../redux/SignUpSlice'
 
 import styles from './form.module.scss'

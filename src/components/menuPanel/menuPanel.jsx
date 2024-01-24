@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { signUpDisplayOn } from '../../redux/SignUpSlice';
 import { signInDisplayOn } from '../../redux/SignInSlice';
+import AuthDetails from '../../firebase/AuthDetails';
 
 import styles from './menuPanel.module.scss'
 import { useDispatch } from 'react-redux';
@@ -16,6 +17,7 @@ const MenuPanel = () => {
     const showModalIn = () => {
         dispatch(signInDisplayOn());
     }
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,6 +40,7 @@ const MenuPanel = () => {
 
     return (
         <>
+        <AuthDetails></AuthDetails>
             <div className={`${styles.navigation_panel} ${hide ? `${styles.hidden}` : ''}`}>
                 <p>Hello, Andrew</p>
                 <div className={styles.vertical_line}></div>

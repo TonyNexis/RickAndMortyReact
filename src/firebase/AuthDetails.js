@@ -18,7 +18,11 @@ const AuthDetails = () => {
         }
     }, []);
     console.log('AuthDetails in work')
-    console.log(authUser ? authUser.email : null) 
+    console.log(authUser ? authUser.email.split('@')[0] : 'User') 
+
+    return (
+        <p>{authUser ? authUser.email.split('@')[0] : 'User'}</p>
+    )
 }
 
 export default AuthDetails;

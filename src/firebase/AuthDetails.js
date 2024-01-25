@@ -1,28 +1,39 @@
 import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 import { auth } from './FirebaseConfig'
+import { signInTrue, signInFalse } from '../redux/signInStatusCheck';
+import { useDispatch } from 'react-redux'
 
 const AuthDetails = () => {
-    const [authUser, setAuthUser] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [authChecked, setAuthChecked] = useState(false);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setAuthUser(user);
+                setEmail(user.email);
+                dispatch(signInTrue());
             } else {
-                setAuthUser(null);
+                setEmail(null);
+                dispatch(signInFalse());
             }
+            setAuthChecked(true);
         });
+
         return () => {
-            listen();
-        }
+            unsubscribe();
+        };
     }, []);
-    console.log('AuthDetails in work')
-    console.log(authUser ? authUser.email.split('@')[0] : 'User') 
 
     return (
-        <p>{authUser ? authUser.email.split('@')[0] : 'User'}</p>
-    )
-}
+        <>
+            {authChecked && (
+                <p>{email ? `${email}` : 'Guest'}</p>
+            )}
+        </>
+    );
+};
 
 export default AuthDetails;

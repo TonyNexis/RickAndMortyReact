@@ -4,6 +4,7 @@ import SignInSlice from './SignInSlice'
 import CharacterDetailsSlice from './characterDetailsSlice'
 import CharactersSlice from './charactersSlice'
 import SpinnerSlice from './spinnerSlice'
+import SignInStatusCheck from './signInStatusCheck'
 
 const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
 		spinner: SpinnerSlice,
 		signUpSlice: SignUpSlice,
 		signInSlice: SignInSlice,
+		signInStatusCheck: SignInStatusCheck,
 	},
 })
 

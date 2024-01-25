@@ -13,5 +13,5 @@ export const SignUpSlice = createSlice({
 
 export const signUpDisplay = (state) => state.signUpSlice.display;
 
-export const { signUpDisplayOn, signUpDisplayOff } = SignUpSlice.actions
-export default SignUpSlice.reducer
+export const { signUpDisplayOn, signUpDisplayOff } = SignUpSlice.actions;
+export default SignUpSlice.reducer;

@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from './FirebaseConfig'
 
-const FirebaseUserReg = async (userData) => {
+const firebaseUserReg = async (userData) => {
     const nickname = userData.nickname,
           email = userData.email,
           password = userData.password;
@@ -12,4 +12,4 @@ const FirebaseUserReg = async (userData) => {
     .catch((error) => console.log(error))
 }
 
-export default FirebaseUserReg;
+export default firebaseUserReg;

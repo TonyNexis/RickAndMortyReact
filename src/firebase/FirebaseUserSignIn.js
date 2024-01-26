@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from './FirebaseConfig'
 
-const FirebaseUserSignIn = async (userData) => {
+const firebaseUserSignIn = async (userData) => {
     const {email, password} = userData;
 
     console.log(`firebaseUserSignIn >> email: ${email.toUpperCase()}, password: ${password.toUpperCase()}` )
@@ -11,4 +11,4 @@ const FirebaseUserSignIn = async (userData) => {
 
 }
 
-export default FirebaseUserSignIn;
+export default firebaseUserSignIn;

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import AuthDetails from '../../firebase/AuthDetails'
 import { signInDisplayOn } from '../../redux/SignInSlice'
 import { signUpDisplayOn } from '../../redux/SignUpSlice'
-import { signInStatus } from '../../redux/signInStatusCheck'
+import { signInFalse, signInStatus } from '../../redux/signInStatusCheck'
 
 import { useDispatch } from 'react-redux'
 import styles from './menuPanel.module.scss'
-import usefirebaseSignOut from '../../firebase/FirebaseSignOut'
+import firebaseSignOut from '../../firebase/FirebaseSignOut'
 
 const MenuPanel = () => {
 	const [hide, setHide] = useState(false)
@@ -19,6 +19,8 @@ const MenuPanel = () => {
 	const showModalIn = () => {
 		dispatch(signInDisplayOn())
 	}
+
+
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -40,7 +42,8 @@ const MenuPanel = () => {
 	}
 
     const handleSignOut = () => {
-        usefirebaseSignOut();
+        firebaseSignOut();
+		dispatch(signInFalse)
     };
 
     console.log(signInStatus)
@@ -53,7 +56,7 @@ const MenuPanel = () => {
 			>
 				<AuthDetails />
 				<div className={styles.vertical_line}></div>
-				{signInStatus ? (
+				{!signInStatus ? (
 					<>
 						<button onClick={handleSignOut} className={styles.sign_up_btn}>
 							Sign Out

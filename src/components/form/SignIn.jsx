@@ -18,6 +18,7 @@ import firebaseUserSignIn from '../../firebase/FirebaseUserSignIn'
 import { signInDisplay, signInDisplayOff } from '../../redux/SignInSlice'
 
 import styles from './form.module.scss'
+import { signInTrue } from '../../redux/signInStatusCheck'
 
 const SignInForm = () => {
 	const {
@@ -63,6 +64,8 @@ const SignInForm = () => {
 
 	const onSubmit = data => {
 		firebaseUserSignIn(data)
+		console.log(data)
+		dispatch(signInTrue)
 	}
 
 	useEffect(() => {

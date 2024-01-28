@@ -4,7 +4,7 @@ import { signInDisplayOn } from '../../redux/SignInSlice'
 import { signUpDisplayOn } from '../../redux/SignUpSlice'
 import { signInFalse, signInStatus } from '../../redux/signInStatusCheck'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './menuPanel.module.scss'
 import firebaseSignOut from '../../firebase/FirebaseSignOut'
 
@@ -43,10 +43,10 @@ const MenuPanel = () => {
 
     const handleSignOut = () => {
         firebaseSignOut();
-		dispatch(signInFalse)
+		dispatch(signInFalse())
     };
 
-    console.log(signInStatus)
+	const menuToggle = useSelector(signInStatus)
 	return (
 		<>
 			<div
@@ -56,7 +56,7 @@ const MenuPanel = () => {
 			>
 				<AuthDetails />
 				<div className={styles.vertical_line}></div>
-				{!signInStatus ? (
+				{menuToggle ? (
 					<>
 						<button onClick={handleSignOut} className={styles.sign_up_btn}>
 							Sign Out

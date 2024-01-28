@@ -6,12 +6,8 @@ export const SignInStatusCheck = createSlice({
 		signIn: false,
 	},
 	reducers: {
-		signInTrue: state => {
-			state.signIn = true
-		},
-		signInFalse: state => {
-			state.signIn = false
-		},
+		signInTrue: state => {state.signIn = true},
+		signInFalse: state => {state.signIn = false},
 	},
 })
 

@@ -3,11 +3,11 @@ import { auth } from './FirebaseConfig'
 
 const firebaseUserSignIn = async (userData) => {
     const {email, password} = userData;
-
-    console.log(`firebaseUserSignIn >> email: ${email.toUpperCase()}, password: ${password.toUpperCase()}` )
-
+    
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
-    .catch((error) => console.log(error))
+    .catch((error) => (
+        console.log(error)
+    ))
 
 }
 

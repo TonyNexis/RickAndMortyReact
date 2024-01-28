@@ -16,9 +16,12 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { v4 as uuidv4 } from 'uuid'
 import firebaseUserSignIn from '../../firebase/FirebaseUserSignIn'
 import { signInDisplay, signInDisplayOff } from '../../redux/SignInSlice'
+import { signInTrue } from '../../redux/signInStatusCheck'
+import { auth } from '../../firebase/FirebaseConfig'
 
 import styles from './form.module.scss'
-import { signInTrue } from '../../redux/signInStatusCheck'
+
+
 
 const SignInForm = () => {
 	const {
@@ -32,11 +35,13 @@ const SignInForm = () => {
 
 	const dispatch = useDispatch()
 	const [showPassword, setShowPassword] = React.useState(false)
+	const [userError, setUserError] = React.useState(null);
 
 	const closeModalReg = e => {
 		e.preventDefault()
 		dispatch(signInDisplayOff())
 		setShowPassword(false)
+		setUserError(null);
 		reset()
 	}
 
@@ -46,6 +51,7 @@ const SignInForm = () => {
 		const closeEscape = e => {
 			if (e.key === 'Escape') {
 				dispatch(signInDisplayOff())
+				setUserError(null)
 				reset()
 			}
 		}
@@ -64,8 +70,21 @@ const SignInForm = () => {
 
 	const onSubmit = data => {
 		firebaseUserSignIn(data)
-		console.log(data)
-		dispatch(signInTrue)
+		.then(() => {
+			const user = auth.currentUser;
+            if (user) {
+                console.log(data);
+                dispatch(signInTrue());
+                setUserError(null);
+                dispatch(signInDisplayOff());
+                reset();
+            } else {
+                setUserError('User not found or wrong password')
+            }
+        })
+		.catch(error => {
+			console.log("onSubmit error >>>", error)
+		});
 	}
 
 	useEffect(() => {
@@ -98,11 +117,11 @@ const SignInForm = () => {
 		<Backdrop
 			sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
 			open={display}
-			onClick={closeModalReg}
+			onMouseDown={closeModalReg}
 		>
 			<form
 				className={styles.reg_form}
-				onClick={handleFormClick}
+				onMouseDown={handleFormClick}
 				onSubmit={handleSubmit(onSubmit)}
 				action=''
 			>
@@ -126,12 +145,7 @@ const SignInForm = () => {
 					label='Email'
 					type='email'
 					autoComplete='email'
-					{...register('email', {
-						pattern: {
-							value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
-							message: 'Invalid email address. Please enter a valid email.',
-						},
-					})}
+					{...register('email')}
 				/>
 				<FormControl
 					size='small'
@@ -156,27 +170,18 @@ const SignInForm = () => {
 							</InputAdornment>
 						}
 						label='Password'
-						{...register('password', {
-							required: 'All fields are required.',
-							minLength: {
-								value: 6,
-								message: 'Minimum Password length is 6 characters.',
-							},
-							maxLength: {
-								value: 24,
-								message: 'Maximum Password length is 24 characters.',
-							},
-						})}
+						{...register('password')}
 					/>
 				</FormControl>
 
 				<div className={styles.error_message}>
-					{(errors?.nickname || errors?.email || errors?.password) && (
+					{(errors?.nickname || errors?.email || errors?.password || userError) && (
 						<p>
 							{(errors?.nickname || errors?.email || errors?.password)
-								?.message || 'Error!'}
+								?.message || userError || 'Error!'}
 						</p>
 					)}
+					
 				</div>
 				<Button
 					type='submit'

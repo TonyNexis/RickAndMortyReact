@@ -16,11 +16,17 @@ import logo from './logo.png';
 
 const CharacterList = () => {
     const dispatch = useDispatch();
-    let display = useSelector(spinnerDisplay)
+    let display = useSelector(spinnerDisplay);
+    let nextPageUrl = useSelector(state => state.characters.nextPageUrl);
+    console.log(nextPageUrl)
 
     useEffect (() => {
         dispatch(fetchCharacters());
     }, [dispatch])
+
+    const onNextPage = () => {
+        dispatch(fetchCharacters(nextPageUrl))
+    }
 
     const characters = useSelector(state => state.characters.data)
 
@@ -39,6 +45,7 @@ const CharacterList = () => {
                 <Character key={character.id} id={character.id} name={character.name} race={character.species} avatar={character.image} status={character.status} />
             ))}
             </div>
+            <button onClick={onNextPage}>next page</button>
         </div>
         </>
     )

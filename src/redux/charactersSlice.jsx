@@ -38,11 +38,11 @@ export const CharactersSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCharacters.fulfilled, (state, action) => {
-                state.data = action.payload.results;
-                state.originalData = action.payload.results;
+                state.data = [...state.data, ...action.payload.results]
+                state.originalData = [...state.originalData, ...action.payload.results]
                 state.nextPageUrl = action.payload.info.next
                 console.log('fulfilled status');
-                console.log(state.nextPageUrl)
+
             })
             .addCase(fetchCharacters.pending, (state, action) => {
                 console.log('pending status');

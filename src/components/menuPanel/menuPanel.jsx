@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AuthDetails from '../../firebase/AuthDetails'
-import { signInDisplayOn } from '../../redux/SignInSlice'
-import { signUpDisplayOn } from '../../redux/SignUpSlice'
+import { signInDisplayOn } from '../../redux/signInSlice'
+import { signUpDisplayOn } from '../../redux/signUpSlice'
 import { signInFalse, signInStatus } from '../../redux/signInStatusCheck'
 
 import { useDispatch, useSelector } from 'react-redux'

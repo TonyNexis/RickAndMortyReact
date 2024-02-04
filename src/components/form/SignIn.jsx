@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 // import { v4 as uuidv4 } from 'uuid'
 import firebaseUserSignIn from '../../firebase/FirebaseUserSignIn'
-import { signInDisplay, signInDisplayOff } from '../../redux/SignInSlice'
+import { signInDisplay, signInDisplayOff } from '../../redux/signInSlice'
 import { signInTrue } from '../../redux/signInStatusCheck'
 import { auth } from '../../firebase/FirebaseConfig'
 

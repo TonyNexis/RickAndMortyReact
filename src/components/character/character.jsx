@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchCharacterDetails } from '../../redux/characterDetailsSlice';
 
 import style from './character.module.scss';
+import { positionSave } from '../../redux/positionOnMainPageSlice'
 
 const Character = (props) => {
     const {id, name, race, avatar, status} = props;
@@ -16,6 +17,7 @@ const Character = (props) => {
     function clickCharacter () {
         navigate(`/characters/${id}`);
         dispatch(fetchCharacterDetails(id));
+        dispatch(positionSave())
     }
 
     return (
@@ -26,7 +28,7 @@ const Character = (props) => {
                 src={avatar} 
             />
             <div className={style.text_container}>
-                <p className={style.name}>{name}</p>
+                <p className={style.name}>{name.length < 22 ? name : name.slice(0, 21)+"..."}</p>
                 <div style={{display: 'flex', alignItems: 'center'}}>
                     <p className={style.race}>{race}</p>
                     <div className={liveStatus}>{status === "unknown" ? '- Unknown' : null}</div>

@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import SignUpSlice from './SignUpSlice'
-import SignInSlice from './SignInSlice'
+import SignUpSlice from './signUpSlice'
+import SignInSlice from './signInSlice'
 import CharacterDetailsSlice from './characterDetailsSlice'
 import CharactersSlice from './charactersSlice'
 import SpinnerSlice from './spinnerSlice'
 import SignInStatusCheck from './signInStatusCheck'
+import PositionOnMainPageSlice from './positionOnMainPageSlice'
 
 const store = configureStore({
 	reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
 		signUpSlice: SignUpSlice,
 		signInSlice: SignInSlice,
 		signInStatusCheck: SignInStatusCheck,
+		positionOnMainPageSlice: PositionOnMainPageSlice,
 	},
 })
 

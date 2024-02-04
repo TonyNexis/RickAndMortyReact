@@ -16,7 +16,46 @@
         gap: 20px;
         max-width: 1180px;
         flex-wrap: wrap;
+        margin-bottom: 50px;
+    }
+
+    .nextPageButton {
+        font-size: 20px;
+        padding: 5px 10px 5px 10px;
         margin-bottom: 188px;
+        background-color: #fff;
+        border: 1px solid black;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: box-shadow 0.5s;
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 6px 16px;
+        }
+        &:active {
+            box-shadow: none;
+            transition: box-shadow 0.5s;
+        }
+    }
+
+    .buttonUp {
+        display: flex;
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        width: 42px;
+        height: 54px;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.3s ease;
+
+    }
+
+    .buttonUpHide {
+        opacity: 0;
+        pointer-events: none;
     }
 }
 

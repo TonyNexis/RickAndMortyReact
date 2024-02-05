@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCharacters } from '../../redux/charactersSlice'
+import { clearFilter, fetchCharacters, originCharacters } from '../../redux/charactersSlice'
 
 import { spinnerDisplay } from '../../redux/spinnerSlice'
 import Character from '../character/character'
@@ -31,6 +31,8 @@ const CharacterList = () => {
 
 	const onNextPage = () => {
 		dispatch(fetchCharacters(nextPageUrl))
+		dispatch(originCharacters())
+		dispatch(clearFilter())
 	}
 
 	useEffect(() => {

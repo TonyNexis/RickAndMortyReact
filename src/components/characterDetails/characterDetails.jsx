@@ -8,6 +8,7 @@ import SignUpForm from '../form/SignUp'
 import SignInForm from '../form/SignIn'
 import MenuPanel from '../menuPanel/menuPanel'
 import Spinner from '../spinner/spinner'
+import { originCharacters, characterFilter } from '../../redux/charactersSlice'
 
 import styles from './characterDetails.module.scss'
 
@@ -19,6 +20,7 @@ const CharacterDetails = () => {
 	const display = useSelector(spinnerDisplay)
 	const dispatch = useDispatch()
 	const { id } = useParams()
+	const filterText = useSelector((state) => state.characters.filterText)
 
 	const { name, image, status, gender, species, type, origin } =
 		characterDetails || {}
@@ -31,6 +33,9 @@ const CharacterDetails = () => {
 
 	const clickBack = () => {
 		navigate('/characters')
+		dispatch(originCharacters())
+		dispatch(characterFilter(filterText));
+		
 	}
 
 	const createInfoBlocks = (title, info) => {
